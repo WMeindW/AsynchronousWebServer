@@ -8,6 +8,8 @@ import cz.meind.service.Parser;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -39,24 +41,30 @@ public class Handler {
     private void run() {
         try {
             Request request = Parser.parseRequest(client.getInputStream());
-            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-            HashMap<String,String> headers = new HashMap<>();
-            String body;
-            String code;
             File file = new File((Application.publicFilePath + request.getPath()));
-            Response response;
-            try {
-                body = Files.readString(file.toPath());
-                code = "200 OK";
-                response = new Response(Application.server.contentTypes.get(file.getName().split("\\.")[1]), body, code);
-            } catch (IOException e) {
-                body = "Not found";
-                code = "404 Not Found";
-                response = new Response(Application.server.contentTypes.get("txt"), body, code);
-                Application.logger.error(Handler.class, e);
-            }
+            OutputStream outputStream = client.getOutputStream();
 
-            out.println(response);
+            if (file.exists() && !file.isDirectory()) {
+                try (FileInputStream fileInputStream = new FileInputStream(file)) {
+                    PrintWriter headerWriter = new PrintWriter(outputStream, true);
+                    headerWriter.println("HTTP/1.1 200 OK");
+                    headerWriter.println("Content-Type: " + Application.server.contentTypes.get(file.getName().split("\\.")[1]));
+                    headerWriter.println("Content-Length: " + file.length());
+                    headerWriter.println();
+
+                    byte[] buffer = new byte[4096];
+                    int bytesRead;
+                    while ((bytesRead = fileInputStream.read(buffer)) != -1) {
+                        outputStream.write(buffer, 0, bytesRead);
+                    }
+                }
+            } else {
+                PrintWriter headerWriter = new PrintWriter(outputStream, true);
+                headerWriter.println("HTTP/1.1 404 Not Found");
+                headerWriter.println("Content-Type: text/plain");
+                headerWriter.println();
+                headerWriter.println("404 Soubor nenalezen");
+            }
             client.close();
         } catch (IOException e) {
             Application.logger.error(Handler.class, e);
