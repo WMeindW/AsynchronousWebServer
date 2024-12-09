@@ -15,7 +15,6 @@ public class Listener {
             server = new ServerSocket(Application.port);
         } catch (IOException e) {
             Application.logger.error(Listener.class, e);
-            throw new RuntimeException(e);
         }
 
     }
@@ -24,7 +23,8 @@ public class Listener {
         start();
         while (true) {
             Socket clientSocket = server.accept();
-
+            System.out.println("Request");
+            Application.server.getHandler().handle(clientSocket);
         }
     }
 
@@ -33,7 +33,6 @@ public class Listener {
             run();
         } catch (IOException e) {
             Application.logger.error(Listener.class, e);
-            throw new RuntimeException(e);
         }
     }
 }

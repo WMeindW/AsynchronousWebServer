@@ -6,6 +6,7 @@ import cz.meind.service.asynch.Daemon;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 public class Application {
@@ -17,15 +18,17 @@ public class Application {
 
     public static final String configFilePath = "src/main/resources/application.properties";
 
-    public static String logFilePath;
+    public static String logFilePath = "log/log.txt";
 
-    public static int port;
+    public static int port = 8088;
 
-    public static int poolSize;
+    public static int poolSize = 16;
+
+    public static List<String> defaultHeaders;
 
     public static void run() {
-        initializeConfig();
         initializeLogger();
+        initializeConfig();
         initializeServer();
         initializeDaemon();
     }
@@ -52,10 +55,16 @@ public class Application {
         try {
             properties.load(new FileInputStream(configFilePath));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Application.logger.error(Application.class, e);
         }
-        logFilePath = properties.getProperty("log.file.path");
-        port = Integer.parseInt(properties.getProperty("server.port"));
-        poolSize = Integer.parseInt(properties.getProperty("server.thread.pool.size"));
+        try {
+            logFilePath = properties.getProperty("log.file.path");
+            port = Integer.parseInt(properties.getProperty("server.port"));
+            poolSize = Integer.parseInt(properties.getProperty("server.thread.pool.size"));
+            defaultHeaders = List.of(properties.getProperty("server.default.headers").split(", "));
+        } catch (Exception e) {
+            Application.logger.error(Application.class, e);
+        }
+
     }
 }

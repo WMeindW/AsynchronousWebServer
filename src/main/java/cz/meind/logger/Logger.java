@@ -1,5 +1,7 @@
 package cz.meind.logger;
 
+import cz.meind.application.Application;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -19,7 +21,7 @@ public class Logger {
         try {
             createLogFile(path);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(Logger.class + " [" + LocalDateTime.now() + "] ERROR: " + e);
         }
     }
 
