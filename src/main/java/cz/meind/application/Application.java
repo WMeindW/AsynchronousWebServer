@@ -9,9 +9,11 @@ import java.util.Properties;
 public class Application {
     public static Logger logger;
 
-    private static final String configFilePath = "src/main/resources/application.properties";
+    public static final String configFilePath = "src/main/resources/application.properties";
 
-    private static String logFilePath = "log/log.txt";
+    public static String logFilePath;
+
+    public static int port;
 
     public static void run() {
         System.out.println("Starting the application...");
@@ -31,5 +33,6 @@ public class Application {
             throw new RuntimeException(e);
         }
         logFilePath = properties.getProperty("log.file.path");
+        port = Integer.parseInt(properties.getProperty("server.port"));
     }
 }

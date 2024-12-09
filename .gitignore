@@ -36,3 +36,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/log/log1/log.txt
