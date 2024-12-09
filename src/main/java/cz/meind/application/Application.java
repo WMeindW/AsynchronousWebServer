@@ -21,6 +21,8 @@ public class Application {
 
     public static int port;
 
+    public static int poolSize;
+
     public static void run() {
         initializeConfig();
         initializeLogger();
@@ -54,5 +56,6 @@ public class Application {
         }
         logFilePath = properties.getProperty("log.file.path");
         port = Integer.parseInt(properties.getProperty("server.port"));
+        poolSize = Integer.parseInt(properties.getProperty("server.thread.pool.size"));
     }
 }
