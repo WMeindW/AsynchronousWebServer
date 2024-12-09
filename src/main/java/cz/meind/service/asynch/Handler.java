@@ -1,6 +1,7 @@
 package cz.meind.service.asynch;
 
 import cz.meind.application.Application;
+import cz.meind.service.Parser;
 
 
 import java.io.*;
@@ -32,17 +33,29 @@ public class Handler {
     }
 
     private void run() {
+        try {
+            System.out.println(Parser.parseRequest(client.getInputStream()));
+
+            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+
+            out.println("HTTP/1.1 200 OK");
+            out.println("Content-Type: text/html; charset=UTF-8");
+            out.println("");  // Pustý řádek odděluje hlavičky od těla
+            out.println("<html><body>");
+            out.println("<h1>Vítejte na mém serveru!</h1>");
+            out.println("<p>Tohle je jednoduchý webový server napsaný v Javě.</p>");
+            out.println("</body></html>");
+            out.close();
+            client.close();
+        } catch (IOException e) {
+            Application.logger.error(Handler.class, e);
+        }
         close();
     }
 
     private void close() {
-        try {
-            client.close();
-            Application.server.releaseHandler(this);
-            Thread.currentThread().interrupt();
-        } catch (IOException e) {
-            Application.logger.error(Handler.class, e);
-        }
+        Application.server.releaseHandler(this);
+        Thread.currentThread().interrupt();
     }
 
 }

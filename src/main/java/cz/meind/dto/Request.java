@@ -1,28 +1,19 @@
 package cz.meind.dto;
 
-import java.net.URI;
-import java.net.URL;
-import java.util.List;
+import java.util.HashMap;
 
 public class Request {
-    private URL host;
-
-    private List<String> headers;
+    private HashMap<String,String> headers;
 
     private String path;
 
-    public Request(URL host, List<String> headers, String path) {
-        this.host = host;
+    public Request(HashMap<String,String> headers, String path) {
         this.headers = headers;
         this.path = path;
     }
 
     @Override
     public String toString() {
-        return "Request{" +
-                "host=" + host +
-                ", headers=" + headers +
-                ", path='" + path + '\'' +
-                '}';
+        return "Request{" + ", headers=" + headers + ", path='" + path + '\'' + '}';
     }
 }
