@@ -50,7 +50,7 @@ public class Logger {
 
     public void error(Class<?> c, Exception e) {
         System.out.println(c.getName() + " [" + LocalDateTime.now() + "] ERROR: " + e.toString());
-        write(c.getName() + " [" + LocalDateTime.now() + "] ERROR: " + e.toString());
+        write(c.getName() + " [" + LocalDateTime.now() + "] ERROR: " + e);
 
     }
 
