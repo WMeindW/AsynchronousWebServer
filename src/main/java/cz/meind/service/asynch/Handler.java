@@ -2,17 +2,11 @@ package cz.meind.service.asynch;
 
 import cz.meind.application.Application;
 import cz.meind.dto.Request;
-import cz.meind.dto.Response;
 import cz.meind.service.Parser;
 
 
 import java.io.*;
 import java.net.Socket;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashMap;
 
 public class Handler {
 
