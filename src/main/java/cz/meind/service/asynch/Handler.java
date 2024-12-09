@@ -1,11 +1,16 @@
 package cz.meind.service.asynch;
 
 import cz.meind.application.Application;
+import cz.meind.dto.Request;
+import cz.meind.dto.Response;
 import cz.meind.service.Parser;
 
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.HashMap;
 
 public class Handler {
 
@@ -33,9 +38,25 @@ public class Handler {
 
     private void run() {
         try {
-            System.out.println(Parser.parseRequest(client.getInputStream()));
+            Request request = Parser.parseRequest(client.getInputStream());
+            PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+            HashMap<String,String> headers = new HashMap<>();
+            String body;
+            String code;
+            File file = new File((Application.publicFilePath + request.getPath()));
+            Response response;
+            try {
+                body = Files.readString(file.toPath());
+                code = "200 OK";
+                response = new Response(Application.server.contentTypes.get(file.getName().split("\\.")[1]), body, code);
+            } catch (IOException e) {
+                body = "Not found";
+                code = "404 Not Found";
+                response = new Response(Application.server.contentTypes.get("txt"), body, code);
+                Application.logger.error(Handler.class, e);
+            }
 
-
+            out.println(response);
             client.close();
         } catch (IOException e) {
             Application.logger.error(Handler.class, e);

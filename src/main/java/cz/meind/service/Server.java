@@ -5,19 +5,24 @@ import cz.meind.service.asynch.ErrorHandler;
 import cz.meind.service.asynch.Handler;
 import cz.meind.service.asynch.Listener;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Server {
     public Thread serverThread;
 
+    public ConcurrentHashMap<String, String> contentTypes = new ConcurrentHashMap<>();
+
     private ConcurrentHashMap<Integer, Handler> pool;
 
     private ConcurrentHashMap<Integer, Handler> dispatched;
 
-
     public Server() {
         createPool();
+        loadMimeTypes();
         serverThread = new Thread(Listener::listen);
         serverThread.setName("server");
         serverThread.start();
@@ -35,6 +40,18 @@ public class Server {
     public synchronized void releaseHandler(Handler handler) {
         dispatched.remove(handler.getId());
         pool.put(handler.getId(), handler);
+    }
+
+    private void loadMimeTypes() {
+        try {
+            String mimes = Files.readString(Path.of("src/main/resources/mimes.properties"));
+            for (String mime : mimes.split("\n")) {
+                String[] split = mime.split("=");
+                contentTypes.put(split[0].trim(), split[1].trim());
+            }
+        } catch (IOException e) {
+            Application.logger.error(Server.class, e);
+        }
     }
 
     private void createPool() {

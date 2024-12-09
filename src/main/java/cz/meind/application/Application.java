@@ -26,6 +26,8 @@ public class Application {
 
     public static List<String> defaultHeaders;
 
+    public static String publicFilePath = "src/main/resources/public";
+
     public static void run() {
         initializeLogger();
         initializeConfig();
@@ -62,6 +64,7 @@ public class Application {
             port = Integer.parseInt(properties.getProperty("server.port"));
             poolSize = Integer.parseInt(properties.getProperty("server.thread.pool.size"));
             defaultHeaders = List.of(properties.getProperty("server.default.headers").split(", "));
+            publicFilePath  = properties.getProperty("server.public.file.path");
         } catch (Exception e) {
             Application.logger.error(Application.class, e);
         }
