@@ -8,5 +8,6 @@ public class Server {
     public Server() {
         serverThread = new Thread(Listener::listen);
         Application.logger.info(Listener.class,"Socket server started.");
+        serverThread.start();
     }
 }
