@@ -43,6 +43,11 @@ public class Logger {
         }
     }
 
+    public void message(String message) {
+        System.out.println(message);
+        write(message);
+    }
+
     public void error(Class<?> c, String message) {
         System.out.println(c.getName() + " [" + LocalDateTime.now() + "] ERROR: " + message);
         write(c.getName() + " [" + LocalDateTime.now() + "] ERROR: " + message);
