@@ -9,9 +9,10 @@ public class Response {
 
     private String body;
 
-    public Response(HashMap<String,String> headers, String path) {
+    public Response(HashMap<String, String> headers, String path, String body) {
         this.headers = headers;
         this.path = path;
+        this.body = body;
     }
 
     @Override

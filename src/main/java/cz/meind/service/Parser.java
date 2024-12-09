@@ -18,7 +18,7 @@ public class Parser {
             String header = body.split("\n")[i];
             headers.put(header.split(":")[0], header.split(":")[1]);
         }
-        return new Request(headers, body.split(" ")[1]);
+        return new Request(headers, body.split(" ")[1].split("\\?")[0]);
     }
 
     private static String getBody(InputStream i) {
