@@ -8,6 +8,7 @@ import cz.meind.dto.MonitoringRecord;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,9 +47,11 @@ public class Monitoring {
     public void run() {
         List<MonitoringRecord> list = clear();
         ObjectMapper objectMapper = new ObjectMapper();
+        if (list.isEmpty()) return;
         try {
-            System.out.println(objectMapper.writeValueAsString(list));
-        } catch (JsonProcessingException e) {
+            Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"),objectMapper.writeValueAsString(list) + "\n", StandardOpenOption.APPEND);
+            System.out.println("Written");
+        } catch (IOException e) {
             Application.logger.error(Monitoring.class,e);
         }
     }

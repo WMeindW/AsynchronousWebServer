@@ -21,6 +21,8 @@ public class Response {
         return out;
     }
 
+    public String code;
+
     public void setOut(OutputStream out) {
         this.out = out;
     }
@@ -28,6 +30,14 @@ public class Response {
     public Response(File file, OutputStream out) {
         this.file = file;
         this.out = out;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
@@ -48,7 +58,7 @@ public class Response {
             headerWriter.println("Content-Length: " + file.length());
             headerWriter.println("Server: " + Application.serverName);
             headerWriter.println();
-
+            code = "200 OK";
             byte[] buffer = new byte[4096];
             int bytesRead;
             while ((bytesRead = fileInputStream.read(buffer)) != -1) {
@@ -62,6 +72,7 @@ public class Response {
             headerWriter.println("Server: " + Application.serverName);
             headerWriter.println();
             headerWriter.println("404 Soubor nenalezen");
+            code = "404 Not Found";
         }
 
 
