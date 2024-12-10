@@ -27,6 +27,8 @@ public class Monitoring {
             Files.createDirectories(Path.of(Application.publicFilePath + "/monitor/"));
             Files.createFile(Path.of(Application.publicFilePath + "/monitor/index.html"));
         }
+        if (Files.notExists(Path.of(Application.publicFilePath + "/monitor/monitor.json")))
+            Files.createFile(Path.of(Application.publicFilePath + "/monitor/data.json"));
     }
 
     public synchronized void addRecord(MonitoringRecord record) {
