@@ -41,9 +41,27 @@ public class TestServer {
     }
 
     @Test
-    public void testInitPoolElements() {
+    public void testInitThread() {
         Server server = new Server();
-        Assertions.assertEquals(server.getPool().size(), Application.poolSize);
+        Assertions.assertNotNull(server.serverThread);
+    }
+
+    @Test
+    public void testInitThreadInterrupted() {
+        Server server = new Server();
+        Assertions.assertFalse(server.serverThread.isInterrupted());
+    }
+
+    @Test
+    public void testInitThreadRunning() {
+        Server server = new Server();
+        Assertions.assertEquals(Thread.State.RUNNABLE, server.serverThread.getState());
+    }
+
+    @Test
+    public void testInitThreadName() {
+        Server server = new Server();
+        Assertions.assertEquals("server", server.serverThread.getName());
     }
 
     @Test

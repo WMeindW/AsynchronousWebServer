@@ -10,6 +10,10 @@ import java.net.Socket;
 public class Listener {
     private static ServerSocket server;
 
+    public static ServerSocket getServer() {
+        return server;
+    }
+
     private static void start() {
         try {
             server = new ServerSocket(Application.port);
