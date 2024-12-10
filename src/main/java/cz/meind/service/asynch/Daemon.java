@@ -7,7 +7,6 @@ public class Daemon implements Runnable {
     @Override
     public void run() {
         Monitoring monitor = new Monitoring();
-        monitor.setup();
         while (true) {
             try {
                 Thread.sleep(1000);

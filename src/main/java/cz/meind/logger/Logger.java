@@ -46,15 +46,13 @@ public class Logger {
 
     }
 
-    public void write(String content) {
-        synchronized (lock) {
+    public synchronized void write(String content) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
                 writer.write(content);
                 writer.newLine();
             } catch (IOException e) {
                 System.out.println(content);
             }
-        }
     }
 
     public void message(String message) {
