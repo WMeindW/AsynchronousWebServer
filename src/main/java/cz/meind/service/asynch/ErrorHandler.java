@@ -2,8 +2,6 @@ package cz.meind.service.asynch;
 
 import cz.meind.application.Application;
 import cz.meind.dto.MonitoringRecord;
-import cz.meind.dto.Request;
-import cz.meind.service.Parser;
 
 
 import java.io.*;
@@ -15,14 +13,6 @@ public class ErrorHandler extends Handler {
     private Socket client;
 
     private final Exception e;
-
-    public Socket getClient() {
-        return client;
-    }
-
-    public void setClient(Socket client) {
-        this.client = client;
-    }
 
 
     public ErrorHandler(Exception e) {

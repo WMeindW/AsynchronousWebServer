@@ -1,7 +1,5 @@
 package cz.meind.logger;
 
-import cz.meind.application.Application;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -14,22 +12,7 @@ public class Logger {
 
     private File logFile;
 
-    private final Object lock;
-
-    public File getLogFile() {
-        return logFile;
-    }
-
-    public void setLogFile(File logFile) {
-        this.logFile = logFile;
-    }
-
-    public Object getLock() {
-        return lock;
-    }
-
     public Logger(String path) {
-        lock = new Object();
         try {
             createLogFile(path);
         } catch (IOException e) {

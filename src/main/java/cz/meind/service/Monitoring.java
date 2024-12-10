@@ -1,6 +1,5 @@
 package cz.meind.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.meind.application.Application;
 import cz.meind.dto.MonitoringRecord;

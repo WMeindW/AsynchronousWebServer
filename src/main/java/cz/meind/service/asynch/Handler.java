@@ -13,31 +13,9 @@ import java.time.LocalDateTime;
 
 public class Handler {
 
-    private int id;
+    private final int id;
 
     private Socket client;
-
-    private Thread thread;
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Socket getClient() {
-        return client;
-    }
-
-    public void setClient(Socket client) {
-        this.client = client;
-    }
-
-    public Thread getThread() {
-        return thread;
-    }
-
-    public void setThread(Thread thread) {
-        this.thread = thread;
-    }
 
     public Handler(int id) {
         this.id = id;
@@ -48,7 +26,7 @@ public class Handler {
     }
 
     public void handle(Socket c) {
-        thread = new Thread(this::run);
+        Thread thread = new Thread(this::run);
         client = c;
         Application.logger.info(Handler.class, "Dispatching thread: " + thread.getClass() + " with id " + id + " and priority " + thread.getPriority());
         thread.start();

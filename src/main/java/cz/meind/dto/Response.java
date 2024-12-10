@@ -5,39 +5,15 @@ import cz.meind.application.Application;
 import java.io.*;
 
 public class Response {
-    private File file;
+    private final File file;
 
-    private OutputStream out;
-
-    public File getFile() {
-        return file;
-    }
-
-    public void setFile(File file) {
-        this.file = file;
-    }
-
-    public OutputStream getOut() {
-        return out;
-    }
+    private final OutputStream out;
 
     public String code;
-
-    public void setOut(OutputStream out) {
-        this.out = out;
-    }
 
     public Response(File file, OutputStream out) {
         this.file = file;
         this.out = out;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     @Override

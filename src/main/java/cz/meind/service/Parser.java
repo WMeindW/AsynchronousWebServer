@@ -1,8 +1,6 @@
 package cz.meind.service;
 
-import cz.meind.application.Application;
 import cz.meind.dto.Request;
-import cz.meind.service.asynch.ErrorHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,9 +24,8 @@ public class Parser {
         BufferedReader in = new BufferedReader(new InputStreamReader(i, StandardCharsets.UTF_8));
         String requestLine;
         StringBuilder sb = new StringBuilder();
-        while (true) {
-                if (!((requestLine = in.readLine()) != null && !requestLine.isEmpty())) break;
-                sb.append(requestLine).append("\n");
+        while ((requestLine = in.readLine()) != null && !requestLine.isEmpty()) {
+            sb.append(requestLine).append("\n");
         }
         return sb.toString();
     }

@@ -24,18 +24,6 @@ public class Server {
         return serverThread;
     }
 
-    public void setServerThread(Thread serverThread) {
-        this.serverThread = serverThread;
-    }
-
-    public ConcurrentHashMap<String, String> getContentTypes() {
-        return contentTypes;
-    }
-
-    public void setContentTypes(ConcurrentHashMap<String, String> contentTypes) {
-        this.contentTypes = contentTypes;
-    }
-
     public Server() {
         createPool();
         loadMimeTypes();
