@@ -31,6 +31,8 @@ public class Application {
 
     public static String publicFilePath = "src/main/resources/public";
 
+    public static String serverName = "thread-test";
+
     public static void run() {
         initializeLogger();
         initializeConfig();
@@ -70,6 +72,7 @@ public class Application {
             poolSize = Integer.parseInt(properties.getProperty("server.thread.pool.size"));
             defaultHeaders = List.of(properties.getProperty("server.default.headers").split(", "));
             publicFilePath = properties.getProperty("server.public.file.path");
+            serverName = properties.getProperty("server.name");
         } catch (Exception e) {
             Application.logger.error(Application.class, e);
         }

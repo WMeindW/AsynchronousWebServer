@@ -46,6 +46,7 @@ public class Response {
             headerWriter.println("HTTP/1.1 200 OK");
             headerWriter.println("Content-Type: " + Application.server.contentTypes.get(file.getName().split("\\.")[1]));
             headerWriter.println("Content-Length: " + file.length());
+            headerWriter.println("Server: " + Application.serverName);
             headerWriter.println();
 
             byte[] buffer = new byte[4096];
@@ -58,6 +59,7 @@ public class Response {
             PrintWriter headerWriter = new PrintWriter(out, true);
             headerWriter.println("HTTP/1.1 404 Not Found");
             headerWriter.println("Content-Type: text/plain");
+            headerWriter.println("Server: " + Application.serverName);
             headerWriter.println();
             headerWriter.println("404 Soubor nenalezen");
         }
