@@ -38,3 +38,4 @@ build/
 .DS_Store
 /log/log1/log.txt
 /log/log.txt
+/test-log.txt
