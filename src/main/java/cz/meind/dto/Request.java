@@ -25,4 +25,8 @@ public class Request {
     public String toString() {
         return "Request{" + ", headers=" + headers + ", path='" + path + '\'' + '}';
     }
+
+    public void setPath(String s) {
+        this.path = s;
+    }
 }

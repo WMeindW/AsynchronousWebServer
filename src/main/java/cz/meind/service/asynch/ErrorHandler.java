@@ -39,8 +39,6 @@ public class ErrorHandler extends Handler {
 
     private void run() {
         try {
-            Request request = Parser.parseRequest(client.getInputStream());
-            Application.logger.error(Handler.class, "Handling request: " + request);
             Application.logger.error(Handler.class, "Handling error: " + e);
             PrintWriter out = new PrintWriter(client.getOutputStream());
             out.println("HTTP/1.1 500 OK");
@@ -51,8 +49,9 @@ public class ErrorHandler extends Handler {
             out.println("<h2> " + e + "</h2>");
             out.println("</body></html>");
             Application.logger.info(Handler.class, "Handling error response: " + out);
+            out.close();
             client.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             Application.logger.error(Handler.class, e);
         }
         close();

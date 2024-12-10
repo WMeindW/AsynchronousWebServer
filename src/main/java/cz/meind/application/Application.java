@@ -1,6 +1,7 @@
 package cz.meind.application;
 
 import cz.meind.logger.Logger;
+import cz.meind.service.Monitoring;
 import cz.meind.service.Server;
 import cz.meind.service.asynch.Daemon;
 
@@ -13,6 +14,8 @@ public class Application {
     public static Logger logger;
 
     public static Server server;
+
+    public static Monitoring monitor;
 
     public static Thread daemonThread;
 
@@ -31,8 +34,8 @@ public class Application {
     public static void run() {
         initializeLogger();
         initializeConfig();
-        initializeServer();
         initializeDaemon();
+        initializeServer();
     }
 
     private static void initializeDaemon() {
@@ -65,7 +68,7 @@ public class Application {
             port = Integer.parseInt(properties.getProperty("server.port"));
             poolSize = Integer.parseInt(properties.getProperty("server.thread.pool.size"));
             defaultHeaders = List.of(properties.getProperty("server.default.headers").split(", "));
-            publicFilePath  = properties.getProperty("server.public.file.path");
+            publicFilePath = properties.getProperty("server.public.file.path");
         } catch (Exception e) {
             Application.logger.error(Application.class, e);
         }

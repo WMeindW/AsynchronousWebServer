@@ -56,11 +56,12 @@ public class Handler {
         try {
             Request request = Parser.parseRequest(client.getInputStream());
             Application.logger.info(Handler.class,"Handling request: " + request);
+            if (request.getPath().endsWith("/")) request.setPath(request.getPath() + "index.html");
             Response response = new Response(new File((Application.publicFilePath + request.getPath())),client.getOutputStream());
             Application.logger.info(Handler.class,"Handling response: " + response);
             response.respond();
             client.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
             Application.logger.error(Handler.class, e);
             new ErrorHandler(e).handle(client);
         }
