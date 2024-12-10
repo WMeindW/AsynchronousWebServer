@@ -24,6 +24,14 @@ public class Server {
         return serverThread;
     }
 
+    public ConcurrentHashMap<Integer, Handler> getDispatched() {
+        return dispatched;
+    }
+
+    public ConcurrentHashMap<Integer, Handler> getPool() {
+        return pool;
+    }
+
     public Server() {
         createPool();
         loadMimeTypes();
@@ -61,8 +69,7 @@ public class Server {
         dispatched = new ConcurrentHashMap<>();
         pool = new ConcurrentHashMap<>();
         for (int i = 0; i < Application.poolSize; i++) {
-            Handler handler = new Handler(i);
-            pool.put(i, handler);
+            pool.put(i, new Handler(i));
         }
     }
 }

@@ -50,7 +50,9 @@ public class Monitoring {
         ObjectMapper objectMapper = new ObjectMapper();
         if (list.isEmpty()) return;
         try {
-            Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"),objectMapper.writeValueAsString(list) + ",\n", StandardOpenOption.APPEND);
+            for (MonitoringRecord record : list) {
+                Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"),objectMapper.writeValueAsString(record) + ",\n", StandardOpenOption.APPEND);
+            }
         } catch (IOException e) {
             Application.logger.error(Monitoring.class,e);
         }

@@ -20,6 +20,10 @@ public class Logger {
         }
     }
 
+    public File getLogFile() {
+        return logFile;
+    }
+
     private void createLogFile(String path) throws IOException {
         logFile = new File(path);
         if (!Files.exists(Path.of(logFile.getPath()))) {
@@ -29,7 +33,7 @@ public class Logger {
 
     }
 
-    public synchronized void write(String content) {
+    private synchronized void write(String content) {
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFile, true))) {
                 writer.write(content);
                 writer.newLine();
@@ -57,7 +61,6 @@ public class Logger {
     public void info(Class<?> c, String message) {
         System.out.println(c.getName() + " [" + LocalDateTime.now() + "] INFO: " + message);
         write(c.getName() + " [" + LocalDateTime.now() + "] INFO: " + message);
-
     }
 
     public void warn(Class<?> c, String message) {
