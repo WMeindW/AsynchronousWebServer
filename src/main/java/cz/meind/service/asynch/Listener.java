@@ -13,6 +13,7 @@ public class Listener {
     private static void start() {
         try {
             server = new ServerSocket(Application.port);
+            Application.logger.info(Listener.class, "Socket server started on port " + Application.port + ".");
         } catch (IOException e) {
             Application.logger.error(Listener.class, e);
         }
@@ -23,16 +24,20 @@ public class Listener {
         start();
         while (true) {
             Socket clientSocket = server.accept();
-            System.out.println("Request");
+            Application.logger.info(Listener.class,"Accepted client socket");
             Application.server.getHandler().handle(clientSocket);
         }
     }
 
     public static void listen() {
         try {
+            Thread.sleep(1000);
             run();
         } catch (IOException e) {
             Application.logger.error(Listener.class, e);
+        } catch (InterruptedException e) {
+            Application.logger.error(Listener.class, e);
+            System.exit(130);
         }
     }
 }

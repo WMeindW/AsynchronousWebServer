@@ -20,13 +20,28 @@ public class Server {
 
     private ConcurrentHashMap<Integer, Handler> dispatched;
 
+    public Thread getServerThread() {
+        return serverThread;
+    }
+
+    public void setServerThread(Thread serverThread) {
+        this.serverThread = serverThread;
+    }
+
+    public ConcurrentHashMap<String, String> getContentTypes() {
+        return contentTypes;
+    }
+
+    public void setContentTypes(ConcurrentHashMap<String, String> contentTypes) {
+        this.contentTypes = contentTypes;
+    }
+
     public Server() {
         createPool();
         loadMimeTypes();
         serverThread = new Thread(Listener::listen);
         serverThread.setName("server");
         serverThread.start();
-        Application.logger.info(Listener.class, "Socket server started on port " + Application.port + ".");
     }
 
     public synchronized Handler getHandler() {

@@ -16,6 +16,18 @@ public class Logger {
 
     private final Object lock;
 
+    public File getLogFile() {
+        return logFile;
+    }
+
+    public void setLogFile(File logFile) {
+        this.logFile = logFile;
+    }
+
+    public Object getLock() {
+        return lock;
+    }
+
     public Logger(String path) {
         lock = new Object();
         try {
@@ -40,7 +52,7 @@ public class Logger {
                 writer.write(content);
                 writer.newLine();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                System.out.println(content);
             }
         }
     }

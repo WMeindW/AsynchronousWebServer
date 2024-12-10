@@ -36,6 +36,7 @@ public class Application {
     }
 
     private static void initializeDaemon() {
+        Runtime.getRuntime().addShutdownHook(new Thread(Daemon::shutdown));
         daemonThread = new Thread(new Daemon());
         daemonThread.setDaemon(true);
         Application.logger.info(Daemon.class, "Starting daemon.");
