@@ -1,31 +1,8 @@
-[{"error":false,"id":0,"code":"200 OK","servingTime":8,"fileSize":0,"dateTime":"2024-12-10T20:52:40.747945"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":1728,"fileSize":110,"dateTime":"2024-12-10T20:52:42.469251700"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":3421,"fileSize":228,"dateTime":"2024-12-10T20:52:45.889062900"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":947,"fileSize":346,"dateTime":"2024-12-10T20:52:46.835797800"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":990,"fileSize":463,"dateTime":"2024-12-10T20:52:47.823441800"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":1303,"fileSize":580,"dateTime":"2024-12-10T20:52:49.126580500"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":1334,"fileSize":698,"dateTime":"2024-12-10T20:52:50.454504"},{"error":false,"id":1,"code":"200 OK","servingTime":551,"fileSize":698,"dateTime":"2024-12-10T20:52:51.004501"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":574,"fileSize":925,"dateTime":"2024-12-10T20:52:51.577225"},{"error":false,"id":1,"code":"200 OK","servingTime":684,"fileSize":925,"dateTime":"2024-12-10T20:52:52.260500"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":658,"fileSize":1151,"dateTime":"2024-12-10T20:52:52.916648300"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":575,"fileSize":1269,"dateTime":"2024-12-10T20:52:53.489031900"},{"error":false,"id":0,"code":"200 OK","servingTime":200,"fileSize":1269,"dateTime":"2024-12-10T20:52:53.688078500"},{"error":false,"id":1,"code":"200 OK","servingTime":342,"fileSize":1269,"dateTime":"2024-12-10T20:52:54.028154800"},{"error":false,"id":0,"code":"200 OK","servingTime":306,"fileSize":1269,"dateTime":"2024-12-10T20:52:54.332224400"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":1098,"fileSize":1735,"dateTime":"2024-12-10T20:52:55.426598800"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":419,"fileSize":1854,"dateTime":"2024-12-10T20:52:55.844691200"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":23696,"fileSize":1972,"dateTime":"2024-12-10T20:53:19.539757400"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":2610,"fileSize":2092,"dateTime":"2024-12-10T20:53:22.147088"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":747,"fileSize":2208,"dateTime":"2024-12-10T20:53:22.892275100"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":908,"fileSize":2326,"dateTime":"2024-12-10T20:53:23.798125600"},{"error":false,"id":1,"code":"200 OK","servingTime":726,"fileSize":2326,"dateTime":"2024-12-10T20:53:24.523747700"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":2109,"fileSize":2560,"dateTime":"2024-12-10T20:53:26.630625800"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":1099,"fileSize":2679,"dateTime":"2024-12-10T20:53:27.727527900"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":967,"fileSize":2798,"dateTime":"2024-12-10T20:53:28.692311500"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":841,"fileSize":2916,"dateTime":"2024-12-10T20:53:29.532416300"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":732,"fileSize":3034,"dateTime":"2024-12-10T20:53:30.262342500"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":742,"fileSize":3152,"dateTime":"2024-12-10T20:53:31.003507500"},{"error":false,"id":0,"code":"200 OK","servingTime":681,"fileSize":3152,"dateTime":"2024-12-10T20:53:31.682390400"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":919,"fileSize":3386,"dateTime":"2024-12-10T20:53:32.600698200"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":737,"fileSize":3504,"dateTime":"2024-12-10T20:53:33.336506500"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":2186,"fileSize":3622,"dateTime":"2024-12-10T20:53:35.522123100"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":1835,"fileSize":3741,"dateTime":"2024-12-10T20:53:37.355621800"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":2821,"fileSize":3860,"dateTime":"2024-12-10T20:53:40.175514500"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":709,"fileSize":3979,"dateTime":"2024-12-10T20:53:40.882179600"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":7456,"fileSize":146,"dateTime":"2024-12-10T20:53:48.337142600"}]
-[{"error":false,"id":0,"code":"200 OK","servingTime":3,"fileSize":146,"dateTime":"2024-12-10T20:53:53.858881200"}]
-[{"error":false,"id":1,"code":"200 OK","servingTime":2766,"fileSize":4330,"dateTime":"2024-12-10T20:53:56.622133600"}]
+[{"error":false,"id":0,"code":"200 OK","servingTime":9,"fileSize":146,"dateTime":"2024-12-10T20:56:22.564416400"},{"error":false,"id":1,"code":"200 OK","servingTime":823,"fileSize":146,"dateTime":"2024-12-10T20:56:23.381850900"}],
+[{"error":false,"id":0,"code":"200 OK","servingTime":589,"fileSize":146,"dateTime":"2024-12-10T20:56:23.968123900"}],
+[{"error":false,"id":1,"code":"200 OK","servingTime":25401,"fileSize":146,"dateTime":"2024-12-10T20:56:49.367923700"}],
+[{"error":false,"id":0,"code":"200 OK","servingTime":10268,"fileSize":146,"dateTime":"2024-12-10T20:56:59.634475800"},{"error":false,"id":1,"code":"200 OK","servingTime":224,"fileSize":146,"dateTime":"2024-12-10T20:56:59.857930100"}],
+[{"error":false,"id":0,"code":"200 OK","servingTime":234,"fileSize":146,"dateTime":"2024-12-10T20:57:00.090714700"},{"error":false,"id":1,"code":"200 OK","servingTime":210,"fileSize":146,"dateTime":"2024-12-10T20:57:00.298759900"},{"error":false,"id":0,"code":"200 OK","servingTime":313,"fileSize":146,"dateTime":"2024-12-10T20:57:00.610831300"}],
+[{"error":false,"id":1,"code":"200 OK","servingTime":325,"fileSize":146,"dateTime":"2024-12-10T20:57:00.933903500"}],
+[{"error":false,"id":0,"code":"200 OK","servingTime":29531,"fileSize":1170,"dateTime":"2024-12-10T20:57:30.463215700"}],
+[{"error":false,"id":1,"code":"200 OK","servingTime":13133,"fileSize":1291,"dateTime":"2024-12-10T20:57:43.593209800"}],

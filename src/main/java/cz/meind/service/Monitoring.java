@@ -30,8 +30,10 @@ public class Monitoring {
             Files.createDirectories(Path.of(Application.publicFilePath + "/monitor/"));
             Files.createFile(Path.of(Application.publicFilePath + "/monitor/index.html"));
         }
-        if (Files.notExists(Path.of(Application.publicFilePath + "/monitor/monitor.json")))
+        if (Files.notExists(Path.of(Application.publicFilePath + "/monitor/data.json"))){
             Files.createFile(Path.of(Application.publicFilePath + "/monitor/data.json"));
+        }
+
     }
 
     private synchronized List<MonitoringRecord> clear() {
@@ -49,8 +51,7 @@ public class Monitoring {
         ObjectMapper objectMapper = new ObjectMapper();
         if (list.isEmpty()) return;
         try {
-            Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"),objectMapper.writeValueAsString(list) + "\n", StandardOpenOption.APPEND);
-            System.out.println("Written");
+            Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"),objectMapper.writeValueAsString(list) + ",\n", StandardOpenOption.APPEND);
         } catch (IOException e) {
             Application.logger.error(Monitoring.class,e);
         }
