@@ -1,5 +1,7 @@
 package cz.meind.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.meind.application.Application;
 import cz.meind.dto.MonitoringRecord;
 
@@ -31,11 +33,23 @@ public class Monitoring {
             Files.createFile(Path.of(Application.publicFilePath + "/monitor/data.json"));
     }
 
+    private synchronized List<MonitoringRecord> clear() {
+        List<MonitoringRecord> list = new LinkedList<>(records);
+        records.clear();
+        return list;
+    }
+
     public synchronized void addRecord(MonitoringRecord record) {
         records.add(record);
     }
 
     public void run() {
-
+        List<MonitoringRecord> list = clear();
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            System.out.println(objectMapper.writeValueAsString(list));
+        } catch (JsonProcessingException e) {
+            Application.logger.error(Monitoring.class,e);
+        }
     }
 }

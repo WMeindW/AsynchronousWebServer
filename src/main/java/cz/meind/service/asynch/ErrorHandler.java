@@ -1,12 +1,14 @@
 package cz.meind.service.asynch;
 
 import cz.meind.application.Application;
+import cz.meind.dto.MonitoringRecord;
 import cz.meind.dto.Request;
 import cz.meind.service.Parser;
 
 
 import java.io.*;
 import java.net.Socket;
+import java.time.LocalDateTime;
 
 public class ErrorHandler extends Handler {
 
@@ -38,10 +40,11 @@ public class ErrorHandler extends Handler {
     }
 
     private void run() {
+        long start = System.currentTimeMillis();
         try {
             Application.logger.error(Handler.class, "Handling error: " + e);
             PrintWriter out = new PrintWriter(client.getOutputStream());
-            out.println("HTTP/1.1 500 OK");
+            out.println("HTTP/1.1 500 Internal Server Error");
             out.println("Content-Type: text/html; charset=UTF-8");
             out.println("Server: " + Application.serverName);
             out.println("");
@@ -52,6 +55,7 @@ public class ErrorHandler extends Handler {
             Application.logger.info(Handler.class, "Handling error response: " + out);
             out.close();
             client.close();
+            Application.monitor.addRecord(new MonitoringRecord(false,super.getId(),"500 Internal Server Error",System.currentTimeMillis() - start,0, LocalDateTime.now().toString()));
         } catch (Exception e) {
             Application.logger.error(Handler.class, e);
         }
