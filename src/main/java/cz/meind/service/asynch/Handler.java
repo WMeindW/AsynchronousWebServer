@@ -41,8 +41,8 @@ public class Handler {
             Response response = new Response(new File((Application.publicFilePath + request.getPath())), client.getOutputStream());
             Application.logger.info(Handler.class, "Handling response: " + response);
             response.respond();
+            Application.monitor.addRecord(new MonitoringRecord( id, System.currentTimeMillis() - start, request.getPath()));
             client.close();
-            Application.monitor.addRecord(new MonitoringRecord(false, id, response.getCode(), System.currentTimeMillis() - start, new File((Application.publicFilePath + request.getPath())).length(), LocalDateTime.now().toString()));
         } catch (Exception e) {
             Application.logger.error(Handler.class, e);
             new ErrorHandler(e).handle(client);

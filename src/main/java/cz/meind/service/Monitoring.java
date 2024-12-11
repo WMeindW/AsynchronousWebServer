@@ -25,14 +25,10 @@ public class Monitoring {
 
     private void setup() throws IOException {
         Application.monitor = this;
-        if (Files.notExists(Path.of(Application.publicFilePath + "/monitor/index.html"))) {
+        if (Files.notExists(Path.of(Application.publicFilePath + "/monitor/data.json"))) {
             Files.createDirectories(Path.of(Application.publicFilePath + "/monitor/"));
-            Files.createFile(Path.of(Application.publicFilePath + "/monitor/index.html"));
-        }
-        if (Files.notExists(Path.of(Application.publicFilePath + "/monitor/data.json"))){
             Files.createFile(Path.of(Application.publicFilePath + "/monitor/data.json"));
         }
-
     }
 
     private synchronized List<MonitoringRecord> clear() {
@@ -42,7 +38,7 @@ public class Monitoring {
     }
 
     public synchronized void addRecord(MonitoringRecord record) {
-        records.add(record);
+        if (record.servingTime() < 500) records.add(record);
     }
 
     public void run() {
@@ -51,10 +47,10 @@ public class Monitoring {
         if (list.isEmpty()) return;
         try {
             for (MonitoringRecord record : list) {
-                Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"),objectMapper.writeValueAsString(record) + ",\n", StandardOpenOption.APPEND);
+                Files.writeString(Path.of(Application.publicFilePath + "/monitor/data.json"), objectMapper.writeValueAsString(record) + ",\n", StandardOpenOption.APPEND);
             }
         } catch (IOException e) {
-            Application.logger.error(Monitoring.class,e);
+            Application.logger.error(Monitoring.class, e);
         }
     }
 }

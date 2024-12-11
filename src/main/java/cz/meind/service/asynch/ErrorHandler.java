@@ -44,8 +44,8 @@ public class ErrorHandler extends Handler {
             out.println("</body></html>");
             Application.logger.info(Handler.class, "Handling error response: " + out);
             out.close();
+            Application.monitor.addRecord(new MonitoringRecord(super.getId(),System.currentTimeMillis() - start,"/error"));
             client.close();
-            Application.monitor.addRecord(new MonitoringRecord(false,super.getId(),"500 Internal Server Error",System.currentTimeMillis() - start,0, LocalDateTime.now().toString()));
         } catch (Exception e) {
             Application.logger.error(Handler.class, e);
         }

@@ -1,7 +1,6 @@
 package cz.meind.service.asynch;
 
 import cz.meind.application.Application;
-import cz.meind.service.Server;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
