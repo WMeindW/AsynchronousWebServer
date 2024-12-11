@@ -14,10 +14,12 @@ public class ErrorHandler extends Handler {
 
     private final Exception e;
 
+    private String path;
 
-    public ErrorHandler(Exception e) {
+    public ErrorHandler(Exception e, String path) {
         super(-1);
         this.e = e;
+        this.path = path;
     }
 
     public int getId() {
@@ -44,7 +46,7 @@ public class ErrorHandler extends Handler {
             out.println("</body></html>");
             Application.logger.info(Handler.class, "Handling error response: " + out);
             out.close();
-            Application.monitor.addRecord(new MonitoringRecord(super.getId(),System.currentTimeMillis() - start,"/error"));
+            Application.monitor.addRecord(new MonitoringRecord(true, super.getId(), System.currentTimeMillis() - start, path));
             client.close();
         } catch (Exception e) {
             Application.logger.error(Handler.class, e);

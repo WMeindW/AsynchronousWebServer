@@ -36,16 +36,21 @@ public class Handler {
         long start = System.currentTimeMillis();
         try {
             Request request = Parser.parseRequest(client.getInputStream());
-            Application.logger.info(Handler.class, "Handling request: " + request);
-            if (request.getPath().endsWith("/")) request.setPath(request.getPath() + "index.html");
-            Response response = new Response(new File((Application.publicFilePath + request.getPath())), client.getOutputStream());
-            Application.logger.info(Handler.class, "Handling response: " + response);
-            response.respond();
-            Application.monitor.addRecord(new MonitoringRecord( id, System.currentTimeMillis() - start, request.getPath()));
-            client.close();
-        } catch (Exception e) {
+            try {
+                Application.logger.info(Handler.class, "Handling request: " + request);
+                if (request.getPath().endsWith("/")) request.setPath(request.getPath() + "index.html");
+                Response response = new Response(new File((Application.publicFilePath + request.getPath())), client.getOutputStream());
+                Application.logger.info(Handler.class, "Handling response: " + response);
+                response.respond();
+                Application.monitor.addRecord(new MonitoringRecord(false, id, System.currentTimeMillis() - start, request.getPath()));
+                client.close();
+            } catch (Exception e) {
+                Application.logger.error(Handler.class, e);
+                new ErrorHandler(e, request.getPath()).handle(client);
+            }
+        } catch (IOException e) {
             Application.logger.error(Handler.class, e);
-            new ErrorHandler(e).handle(client);
+            new ErrorHandler(e, "unknown").handle(client);
         }
         close();
     }

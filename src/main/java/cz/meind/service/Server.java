@@ -45,7 +45,7 @@ public class Server {
     }
 
     public synchronized Handler getHandler() {
-        if (pool.isEmpty()) return new ErrorHandler(new IllegalStateException("Server pool depleted"));
+        if (pool.isEmpty()) return new ErrorHandler(new IllegalStateException("Server pool depleted"),"unknown");
         Map.Entry<Integer, Handler> entry = pool.entrySet().iterator().next();
         pool.remove(entry.getKey());
         dispatched.put(entry.getKey(), entry.getValue());
