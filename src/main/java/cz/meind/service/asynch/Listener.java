@@ -20,6 +20,7 @@ public class Listener {
             Application.logger.info(Listener.class, "Socket server started on port " + Application.port + ".");
         } catch (IOException e) {
             Application.logger.error(Listener.class, e);
+            throw new RuntimeException(e);
         }
 
     }
@@ -28,7 +29,7 @@ public class Listener {
         start();
         while (true) {
             Socket clientSocket = server.accept();
-            Application.logger.info(Listener.class,"Accepted client socket");
+            Application.logger.info(Listener.class, "Accepted client socket");
             Application.server.getHandler().handle(clientSocket);
         }
     }
