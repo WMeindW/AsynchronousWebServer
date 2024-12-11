@@ -37,3 +37,8 @@
 {"id":0,"servingTime":4,"path":"/index.html"},
 {"id":0,"servingTime":67,"path":"/monitor/script.js"},
 {"id":0,"servingTime":3,"path":"/monitor/data.json"},
+{"id":0,"servingTime":10,"path":"/index.html"},
+{"id":0,"servingTime":2,"path":"/favicon.ico"},
+{"id":0,"servingTime":4,"path":"/monitor/index.html"},
+{"id":1,"servingTime":64,"path":"/monitor/script.js"},
+{"id":0,"servingTime":3,"path":"/monitor/data.json"},
