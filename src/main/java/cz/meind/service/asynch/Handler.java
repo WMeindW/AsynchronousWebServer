@@ -42,7 +42,7 @@ public class Handler {
             Application.logger.info(Handler.class, "Handling response: " + response);
             response.respond();
             client.close();
-            Application.monitor.addRecord(new MonitoringRecord(false, id, response.code, System.currentTimeMillis() - start, new File((Application.publicFilePath + request.getPath())).length(), LocalDateTime.now().toString()));
+            Application.monitor.addRecord(new MonitoringRecord(false, id, response.getCode(), System.currentTimeMillis() - start, new File((Application.publicFilePath + request.getPath())).length(), LocalDateTime.now().toString()));
         } catch (Exception e) {
             Application.logger.error(Handler.class, e);
             new ErrorHandler(e).handle(client);

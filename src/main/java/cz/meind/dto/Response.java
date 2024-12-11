@@ -9,19 +9,24 @@ public class Response {
 
     private final OutputStream out;
 
-    public String code;
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
 
     public Response(File file, OutputStream out) {
         this.file = file;
         this.out = out;
     }
 
+    public OutputStream getOut() {
+        return out;
+    }
+
     @Override
     public String toString() {
-        return "Response{" +
-                "file=" + file +
-                ", out=" + out +
-                '}';
+        return "Response{" + "file=" + file + ", out=" + out + '}';
     }
 
     //ChatGPT

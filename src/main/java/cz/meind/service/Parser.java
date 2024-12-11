@@ -15,7 +15,7 @@ public class Parser {
         HashMap<String, String> headers = new HashMap<>();
         for (int i = 1; i < body.split("\n").length; i++) {
             String header = body.split("\n")[i];
-            headers.put(header.split(":")[0], header.split(":")[1]);
+            headers.put(header.split(":")[0], header.split(":")[1].trim());
         }
         return new Request(headers, body.split(" ")[1].split("\\?")[0]);
     }

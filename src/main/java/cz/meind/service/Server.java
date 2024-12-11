@@ -32,6 +32,10 @@ public class Server {
         return pool;
     }
 
+    public Server(String test) {
+        loadMimeTypes();
+    }
+
     public Server() {
         createPool();
         loadMimeTypes();
