@@ -20,11 +20,13 @@ public class TestParser {
                 GET / 200 OK
                 Content-Length: 0
                 Content-Type: text/html
+                Host: localhost
                 """;
         Request r = Parser.parseRequest(new ByteArrayInputStream(s.getBytes()));
         HashMap<String, String> headers = new HashMap<>();
         headers.put("Content-Length", "0");
         headers.put("Content-Type", "text/html");
+        headers.put("Host", "localhost");
         Assertions.assertEquals("/", r.getPath());
         Assertions.assertEquals(headers, r.getHeaders());
     }
