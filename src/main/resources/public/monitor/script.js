@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     fetchData().then((data) => {
+        const container = document.getElementById("container");
         const paths = [];
         for (const d of data) {
             if (!paths.includes(d.path)) paths.push(d.path);
@@ -29,6 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 errors: d.filter(d => d.error === true).length,
                 averageTime: averageTime
             });
+        }
+        for (const dataObject of dataObjects) {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <h2>${dataObject.path}</h2>
+                <p>Errors: ${dataObject.errors}</p>
+                <p>Average serving time: ${Math.round( dataObject.averageTime * 10) / 10} miliseconds</p>
+            `;
+            container.appendChild(div);
         }
         console.log(dataObjects);
     });
