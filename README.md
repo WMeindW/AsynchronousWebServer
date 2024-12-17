@@ -49,9 +49,10 @@ The server follows a modular architecture:
     - Parses configuration settings (e.g., port number, thread pool size).
 
 2. **Core Workflow**:
-    - **Dispatch Server Thread**: Listens for incoming client connections.
-    - **Daemon Thread**:
+    - **Dispatch Server Thread**:
+        - Listens for incoming client connections.
         - Accepts client requests.
+    - **Daemon Thread**:
         - Parses request objects (e.g., JSON or XML) using Jackson.
         - Assigns threads from a thread pool to handle requests.
     - **Request Handling**:
@@ -66,82 +67,11 @@ The server follows a modular architecture:
 
 ---
 
-## **Technology**
-
-The project leverages the following technologies:
-
-- **Java**: The core programming language used to implement the server, threading model, and socket communication.
-- **Sockets**: Java Sockets (`ServerSocket` and `Socket`) are used for asynchronous communication between the server and
-  clients.
-- **Threads**: A multi-threaded architecture ensures concurrent request handling using a thread pool.
-- **Thread Pool**: Manages worker threads efficiently, reducing thread creation overhead.
-- **Jackson**: For parsing and serializing JSON objects from client requests.
-- **HTML and JavaScript**: For the front-end, providing a client interface to send requests to the server and display
-  responses.
-
----
-
 ## **Description**
 
 The **AsynchronousWebServer** is a lightweight, high-performance server designed to handle multiple client connections
 concurrently. Its primary use cases include serving JSON-based requests and returning responses efficiently using a
 thread pool architecture.
-
-### **Key Features**:
-
-1. **Multi-threaded Design**:
-    - Efficiently manages client requests using a thread pool.
-    - Threads are reused, reducing overhead and improving performance.
-
-2. **Socket-Based Communication**:
-    - Establishes bi-directional communication with clients using Java Sockets.
-
-3. **JSON Parsing**:
-    - Uses **Jackson** to parse client request data and generate appropriate responses.
-
-4. **Thread Safety and Resource Management**:
-    - Threads are safely managed with synchronized blocks and thread-safe collections.
-    - Shared resources are accessed efficiently without race conditions.
-
-5. **Information Sharing**:
-    - Request and response data are shared between threads using shared objects or thread-local storage.
-
-6. **Client Integration**:
-    - Simple HTML and JavaScript-based front-end for testing server requests and responses.
-
-7. **Resource Management**:
-    - Ensures threads are returned to the pool after task completion.
-    - Implements clean-up mechanisms for graceful shutdown.
-
----
-
-## **Workflow**
-
-Below is the detailed server workflow based on the diagram:
-
-1. **Initialization**:
-    - The server starts and initializes logging.
-    - Configuration settings are parsed.
-
-2. **Server Dispatch**:
-    - A **Server Thread** is dispatched to start listening for incoming client requests.
-
-3. **Request Handling**:
-    - A **Daemon Thread** accepts requests and parses incoming objects.
-    - Requests are forwarded to a **Thread Pool**:
-        - Handles request processing.
-        - Logs activities.
-        - Generates and sends responses back to clients.
-
-4. **Thread Pool Management**:
-    - Threads are dynamically assigned to process requests and returned to the pool after completion.
-
-5. **Thread Communication**:
-    - Shared objects or queues pass data between threads (e.g., parsed requests, responses).
-    - Results and logs are communicated back to the main server thread.
-
-6. **Clean Up**:
-    - Ensures resources are freed, and connections are gracefully closed.
 
 ---
 
@@ -149,8 +79,7 @@ Below is the detailed server workflow based on the diagram:
 
 ### **Requirements**:
 
-- Java 8 or higher
-- Jackson library
+- Java 17 or higher
 - Web browser for front-end testing
 
 ### **Running the Server**:
@@ -176,7 +105,6 @@ Below is the detailed server workflow based on the diagram:
 
 - Implement HTTPS for secure communication.
 - Add more robust error handling and logging.
-- Introduce a configuration file for customizable server settings.
 - Extend support for XML parsing.
 - Add more advanced thread monitoring and scaling for large-scale workloads.
 
@@ -184,7 +112,7 @@ Below is the detailed server workflow based on the diagram:
 
 ## **Contributing**
 
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+Contributions are not welcome! Feel free to not open an issue nor submit a pull request.
 
 ---
 
