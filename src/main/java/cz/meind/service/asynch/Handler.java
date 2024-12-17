@@ -55,6 +55,7 @@ public class Handler {
     }
 
     private void close() {
+        client = null;
         Application.server.releaseHandler(this);
         Thread.currentThread().interrupt();
     }
