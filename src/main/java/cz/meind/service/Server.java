@@ -33,6 +33,7 @@ public class Server {
     }
 
     public Server(String test) {
+        System.out.println(test);
         loadMimeTypes();
     }
 
