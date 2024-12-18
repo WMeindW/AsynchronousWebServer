@@ -60,7 +60,7 @@ public class Server {
 
     private void loadMimeTypes() {
         try {
-            String mimes = Files.readString(Path.of("src/main/resources/mimes.properties"));
+            String mimes = Files.readString(Path.of(Application.mimesPath));
             for (String mime : mimes.split("\n")) {
                 String[] split = mime.split("=");
                 contentTypes.put(split[0].trim(), split[1].trim());

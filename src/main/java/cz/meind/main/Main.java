@@ -4,6 +4,6 @@ import cz.meind.application.Application;
 
 public class Main {
     public static void main(String[] args) {
-        Application.run();
+        Application.run(args);
     }
 }

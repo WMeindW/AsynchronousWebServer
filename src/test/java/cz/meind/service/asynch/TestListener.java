@@ -8,7 +8,7 @@ public class TestListener {
     @Test
     public void testListenerInit() throws InterruptedException {
         Application.port = 6666;
-        Application.run();
+        Application.run(new String[0]);
         Thread.sleep(1100);
         Assertions.assertNotNull(Listener.getServer());
         Assertions.assertEquals(Listener.getServer().getLocalPort(), Application.port);

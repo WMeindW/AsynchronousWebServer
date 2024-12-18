@@ -19,7 +19,7 @@ public class Application {
 
     public static Thread daemonThread;
 
-    public static final String configFilePath = "src/main/resources/application.properties";
+    public static String configFilePath = "src/main/resources/application.properties";
 
     public static String logFilePath = "log/log.txt";
 
@@ -33,9 +33,11 @@ public class Application {
 
     public static String serverName = "thread-test";
 
-    public static void run() {
+    public static String mimesPath = "src/main/resources/mimes.properties";
+
+    public static void run(String[] args) {
         initializeLogger();
-        initializeConfig();
+        initializeConfig(args);
         initializeDaemon();
         initializeServer();
     }
@@ -59,7 +61,8 @@ public class Application {
         logger.info(Application.class, "Starting application.");
     }
 
-    private static void initializeConfig() {
+    private static void initializeConfig(String[] args) {
+        if (args.length > 0) configFilePath = args[0];
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream(configFilePath));
@@ -73,6 +76,9 @@ public class Application {
             defaultHeaders = List.of(properties.getProperty("server.default.headers").split(", "));
             publicFilePath = properties.getProperty("server.public.file.path");
             serverName = properties.getProperty("server.name");
+            mimesPath = properties.getProperty("server.mimes.path");
+            Application.logger.info(Application.class,"Found config at " + configFilePath);
+            Application.logger.info(Application.class,properties.toString());
         } catch (Exception e) {
             Application.logger.error(Application.class, e);
         }
