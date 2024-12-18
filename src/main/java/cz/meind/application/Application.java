@@ -94,7 +94,7 @@ public class Application {
  *             to the configuration file. If provided, it overrides the default config file path.
  */
 private static void initializeConfig(String[] args) {
-    if (args.length > 0) configFilePath = args[0];
+    if (args.length > 0 && args[0] != null) configFilePath = args[0];
     Properties properties = new Properties();
     try {
         properties.load(new FileInputStream(configFilePath));
