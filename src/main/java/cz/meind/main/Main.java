@@ -6,7 +6,7 @@ import cz.meind.application.Application;
 public class Main {
     /**
      * The entry point of the application.
-     *
+     * <p>
      * This class contains the main method which is the starting point of the application.
      * It initializes the application and passes the command line arguments to it.
      *
