@@ -6,8 +6,10 @@ import cz.meind.dto.MonitoringRecord;
 
 import java.io.*;
 import java.net.Socket;
-import java.time.LocalDateTime;
 
+/**
+ * ErrorHandler is a subclass of Handler that handles exceptions and sends appropriate error responses.
+ */
 public class ErrorHandler extends Handler {
 
     private Socket client;
@@ -16,21 +18,40 @@ public class ErrorHandler extends Handler {
 
     private String path;
 
+    /**
+     * Constructs a new ErrorHandler with the given exception and path.
+     *
+     * @param e     the exception to handle
+     * @param path  the path of the request that caused the exception
+     */
     public ErrorHandler(Exception e, String path) {
         super(-1);
         this.e = e;
         this.path = path;
     }
 
+    /**
+     * Returns the ID of the handler.
+     *
+     * @return the ID of the handler
+     */
     public int getId() {
         return super.getId();
     }
 
+    /**
+     * Handles the error by sending an appropriate error response to the client.
+     *
+     * @param c the client socket
+     */
     public void handle(Socket c) {
         client = c;
         run();
     }
 
+    /**
+     * Runs the error handling process.
+     */
     private void run() {
         long start = System.currentTimeMillis();
         try {
@@ -54,6 +75,9 @@ public class ErrorHandler extends Handler {
         close();
     }
 
+    /**
+     * Closes the handler by interrupting the current thread.
+     */
     private void close() {
         Thread.currentThread().interrupt();
     }

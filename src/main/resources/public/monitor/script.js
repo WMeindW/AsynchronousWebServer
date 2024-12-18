@@ -1,3 +1,8 @@
+/**
+ * Fetches data from a JSON file and processes it to generate statistics.
+ *
+ * @returns {Promise<Array>} A promise that resolves to an array of objects containing statistics for each unique path.
+ */
 document.addEventListener("DOMContentLoaded", () => {
     async function fetchData() {
         try {

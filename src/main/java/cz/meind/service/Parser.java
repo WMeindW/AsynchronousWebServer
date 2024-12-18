@@ -10,6 +10,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
 public class Parser {
+    /**
+     * Parses an HTTP request from an input stream.
+     *
+     * @param in The input stream containing the HTTP request.
+     * @return A Request object representing the parsed HTTP request.
+     * @throws IOException If an error occurs while reading from the input stream.
+     */
     public static Request parseRequest(InputStream in) throws IOException {
         String body = getBody(in).strip();
         HashMap<String, String> headers = new HashMap<>();
@@ -20,6 +27,13 @@ public class Parser {
         return new Request(headers, body.split(" ")[1].split("\\?")[0]);
     }
 
+    /**
+     * Reads the body of an HTTP request from an input stream.
+     *
+     * @param i The input stream containing the HTTP request.
+     * @return The body of the HTTP request as a string.
+     * @throws IOException If an error occurs while reading from the input stream.
+     */
     private static String getBody(InputStream i) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(i, StandardCharsets.UTF_8));
         String requestLine;

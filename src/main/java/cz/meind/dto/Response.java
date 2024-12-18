@@ -4,6 +4,9 @@ import cz.meind.application.Application;
 
 import java.io.*;
 
+/**
+ * Represents a HTTP response to be sent to the client.
+ */
 public class Response {
     private final File file;
 
@@ -11,25 +14,53 @@ public class Response {
 
     private String code;
 
+    /**
+     * Returns the HTTP response code.
+     *
+     * @return the HTTP response code
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Constructs a new Response object.
+     *
+     * @param file the file to be sent as part of the response
+     * @param out  the OutputStream to which the response will be written
+     */
     public Response(File file, OutputStream out) {
         this.file = file;
         this.out = out;
     }
 
+    /**
+     * Returns the OutputStream to which the response will be written.
+     *
+     * @return the OutputStream
+     */
     public OutputStream getOut() {
         return out;
     }
 
+    /**
+     * Returns a string representation of the Response object.
+     *
+     * @return a string representation of the Response object
+     */
     @Override
     public String toString() {
         return "Response{" + "file=" + file + ", out=" + out + '}';
     }
 
-    //ChatGPT
+    /**
+     * Sends the HTTP response to the client.
+     * <p>
+     * If the file exists and is not a directory, the response will contain the file's content with appropriate headers.
+     * If the file does not exist or is a directory, a 404 Not Found response will be sent.
+     *
+     * @throws IOException if an I/O error occurs while sending the response
+     */
     public void respond() throws IOException {
         if (file.exists() && !file.isDirectory()) {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -55,7 +86,5 @@ public class Response {
             headerWriter.println("404 Soubor nenalezen");
             code = "404 Not Found";
         }
-
-
     }
 }

@@ -11,6 +11,9 @@ import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Represents the server functionality.
+ */
 public class Server {
     public Thread serverThread;
 
@@ -20,23 +23,47 @@ public class Server {
 
     private ConcurrentHashMap<Integer, Handler> dispatched;
 
+    /**
+     * Returns the server thread.
+     *
+     * @return the server thread
+     */
     public Thread getServerThread() {
         return serverThread;
     }
 
+    /**
+     * Returns the map of dispatched handlers.
+     *
+     * @return the map of dispatched handlers
+     */
     public ConcurrentHashMap<Integer, Handler> getDispatched() {
         return dispatched;
     }
 
+    /**
+     * Returns the map of available handlers.
+     *
+     * @return the map of available handlers
+     */
     public ConcurrentHashMap<Integer, Handler> getPool() {
         return pool;
     }
 
+    /**
+     * Constructor for testing purposes.
+     *
+     * @param test a test string
+     */
     public Server(String test) {
         System.out.println(test);
         loadMimeTypes();
     }
 
+    /**
+     * Default constructor.
+     * Initializes the server thread, handler pool, and content types.
+     */
     public Server() {
         createPool();
         loadMimeTypes();
@@ -45,6 +72,12 @@ public class Server {
         serverThread.start();
     }
 
+    /**
+     * Retrieves an available handler from the pool.
+     * If the pool is empty, returns an error handler.
+     *
+     * @return the retrieved handler
+     */
     public synchronized Handler getHandler() {
         if (pool.isEmpty()) return new ErrorHandler(new IllegalStateException("Server pool depleted"),"unknown");
         Map.Entry<Integer, Handler> entry = pool.entrySet().iterator().next();
@@ -53,11 +86,19 @@ public class Server {
         return entry.getValue();
     }
 
+    /**
+     * Releases a handler back to the pool.
+     *
+     * @param handler the handler to release
+     */
     public synchronized void releaseHandler(Handler handler) {
         dispatched.remove(handler.getId());
         pool.put(handler.getId(), handler);
     }
 
+    /**
+     * Loads MIME types from a file into the contentTypes map.
+     */
     private void loadMimeTypes() {
         try {
             String mimes = Files.readString(Path.of(Application.mimesPath));
@@ -70,6 +111,9 @@ public class Server {
         }
     }
 
+    /**
+     * Creates the handler pool.
+     */
     private void createPool() {
         dispatched = new ConcurrentHashMap<>();
         pool = new ConcurrentHashMap<>();
