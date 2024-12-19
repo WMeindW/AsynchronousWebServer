@@ -44,7 +44,6 @@ public class Logger {
      * @throws IOException If an I/O error occurs while creating the log file.
      */
     private void createLogFile(String path) throws IOException {
-        System.out.println(path);
         logFile = new File(path);
         if (!Files.exists(Path.of(logFile.getPath()))) {
             Files.createDirectories(Path.of(logFile.getParent()));
