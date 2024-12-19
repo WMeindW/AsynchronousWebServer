@@ -59,7 +59,7 @@ public class ErrorHandler extends Handler {
             PrintWriter out = new PrintWriter(client.getOutputStream());
             out.println("HTTP/1.1 500 Internal Server Error");
             out.println("Content-Type: text/html; charset=UTF-8");
-            out.println("Server: " + Application.serverName);
+            out.println("Server-Name: " + Application.serverName);
             out.println("");
             out.println("<html><body>");
             out.println("<h1>Server failed with error 500!</h1>");
