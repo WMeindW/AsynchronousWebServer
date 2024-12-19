@@ -63,7 +63,7 @@ The server follows a modular architecture:
     - Threads safely interact with shared resources like the logging system or response handler.
 
 4. **Clean Up**:
-    - Ensures proper shutdown and resource deallocation when the server stops.
+    - Ensures proper shutdown and resource reallocation when the server stops.
 
 ---
 
@@ -82,42 +82,11 @@ thread pool architecture.
 - Java 17 or higher
 - Web browser for front-end testing
 
-### **Running the Server**:
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/WMeindW/AsynchronousWebServer.git
-   cd AsynchronousWebServer
-   ```
-2. Compile the code:
-   ```bash
-   javac -cp .:jackson-core.jar AsynchronousWebServer.java
-   ```
-3. Run the server:
-   ```bash
-   java AsynchronousWebServer
-   ```
-4. Open the HTML front-end in a browser to send test requests.
-
----
-
-## **Future Improvements**
-
-- Implement HTTPS for secure communication.
-- Add more robust error handling and logging.
-- Extend support for XML parsing.
-- Add more advanced thread monitoring and scaling for large-scale workloads.
-
----
-
-## **Contributing**
-
-Contributions are not welcome! Feel free to not open an issue nor submit a pull request.
-
----
 
 ## **License**
 
 This project is licensed under the MIT License.
 
 - [DanielLinda/AsynchronousWebServer](https://github.com/WMeindW/AsynchronousWebServer)
+- [Live testing](https://daniellinda.net/andrem/)
+- [Live testing monitoring](https://daniellinda.net/andrem/monitor/)
