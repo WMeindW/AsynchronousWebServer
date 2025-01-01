@@ -48,6 +48,7 @@ public class Listener {
         start();
         while (true) {
             Socket clientSocket = server.accept();
+            clientSocket.setSoTimeout(10000);
             Application.logger.info(Listener.class, "Accepted client socket");
             Application.server.getHandler().handle(clientSocket);
         }
